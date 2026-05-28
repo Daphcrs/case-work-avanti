@@ -1,6 +1,6 @@
-﻿id_run,label,etapa,status,rows_returned,duration_s,executed_at,error_msg
-152b8705-fab5-4283-a92c-e3d05a0d5ae2,SELIC,bronze,success,,,2026-05-27 18:01:13.833473,
-63b4b43f-7889-4099-9890-ce525f92ca38,PTAX_USD,bronze,success,,,2026-05-27 18:01:13.833473,
-1297009d-91ae-40c0-ab76-791554d8fe27,PTAX_EUR,bronze,success,,,2026-05-27 18:01:13.833473,
-ecc39932-6f4a-4c87-9942-3d6a670995fc,INDICADORES,silver,success,3616.0,,2026-05-27 18:01:13.833473,
-7cc83b58-a350-401f-ae20-3ecbe7d81900,FCT_INDICADOR_DIARIO,gold,success,3616.0,,2026-05-27 18:01:13.833473,
+﻿id_execucao,rotulo,etapa,status,linhas_retornadas,duracao_s,executado_em,mensagem_erro
+ea61e910-d8bf-4fe1-964b-89f8c8ec8016,SELIC,bronze,success,,,2026-05-28 18:43:45.415080,
+5ab9d210-b2cc-4165-8086-36e31c85eb26,PTAX_USD,bronze,success,,,2026-05-28 18:43:45.415080,
+07efad4d-0e98-45c5-8d3b-1e0a6c669f7a,PTAX_EUR,bronze,success,,,2026-05-28 18:43:45.415080,
+441377d3-6d37-4f62-a7d5-1ea859874952,INDICADORES,silver,success,3618.0,,2026-05-28 18:43:45.415080,
+f01b6129-23ec-40b2-87e7-0d201d27409b,FCT_INDICADOR_DIARIO,gold,success,3618.0,,2026-05-28 18:43:45.415080,

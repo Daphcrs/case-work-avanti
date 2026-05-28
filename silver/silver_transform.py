@@ -81,8 +81,8 @@ def apply_forward_fill(df): #Preenche os dias sem cotação, como sábado, domin
             how="left"
         )
 
-        #Se o valor está vazio, marca is_filled = True
-        completo["is_filled"] = completo["valor"].isna()
+        #Se o valor está vazio, marca preenchido = True
+        completo["preenchido"] = completo["valor"].isna()
 
         #Preenche código, nome e fonte com o último valor conhecido
         completo[["codigo", "nome", "fonte"]] = completo[["codigo", "nome", "fonte"]].ffill()
@@ -115,9 +115,9 @@ def run_silver():
     df_final = apply_forward_fill(df) #Cria calendário contínuo e preenche lacunas
 
     #Adiciona campos relacionados ao SCD2
-    df_final["valid_from"] = datetime.now()
-    df_final["valid_to"] = None
-    df_final["is_current"] = True
+    df_final["vigencia_inicio"] = datetime.now()
+    df_final["vigencia_fim"] = None
+    df_final["registro_atual"] = True
 
     #Salva o resultado Silver em CSV
     df_final.to_csv("silver/data/indicadores_silver.csv", index=False, encoding="utf-8-sig")

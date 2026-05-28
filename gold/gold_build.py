@@ -58,10 +58,10 @@ def create_fct_indicador_diario(): #Cria a tabela fato principal
         "data_referencia",
         "sk_indicador",
         "valor",
-        "is_filled",
-        "valid_from",
-        "valid_to",
-        "is_current"
+        "preenchido",
+        "vigencia_inicio",
+        "vigencia_fim",
+        "registro_atual"
     ]]
     #Ordena por data e indicador
     fct = fct.sort_values(["data_referencia", "sk_indicador"]).reset_index(drop=True)
@@ -79,56 +79,56 @@ def create_pipeline_runs(rows_fct):
     runs = pd.DataFrame([
         {   
             #Gera um ID único para cada execução
-            "id_run": str(uuid.uuid4()),
+            "id_execucao": str(uuid.uuid4()),
             #Registra qual etapa rodou e se deu certo
-            "label": "SELIC",
+            "rotulo": "SELIC",
             "etapa": "bronze",
             "status": "success",
             #Registra quantidade de linhas
-            "rows_returned": None,
-            "duration_s": None,
-            "executed_at": now,
-            "error_msg": None
+            "linhas_retornadas": None,
+            "duracao_s": None,
+            "executado_em": now,
+            "mensagem_erro": None
         },
         {
-            "id_run": str(uuid.uuid4()),
-            "label": "PTAX_USD",
+            "id_execucao": str(uuid.uuid4()),
+            "rotulo": "PTAX_USD",
             "etapa": "bronze",
             "status": "success",
-            "rows_returned": None,
-            "duration_s": None,
-            "executed_at": now,
-            "error_msg": None
+            "linhas_retornadas": None,
+            "duracao_s": None,
+            "executado_em": now,
+            "mensagem_erro": None
         },
         {
-            "id_run": str(uuid.uuid4()),
-            "label": "PTAX_EUR",
+            "id_execucao": str(uuid.uuid4()),
+            "rotulo": "PTAX_EUR",
             "etapa": "bronze",
             "status": "success",
-            "rows_returned": None,
-            "duration_s": None,
-            "executed_at": now,
-            "error_msg": None
+            "linhas_retornadas": None,
+            "duracao_s": None,
+            "executado_em": now,
+            "mensagem_erro": None
         },
         {
-            "id_run": str(uuid.uuid4()),
-            "label": "INDICADORES",
+            "id_execucao": str(uuid.uuid4()),
+            "rotulo": "INDICADORES",
             "etapa": "silver",
             "status": "success",
-            "rows_returned": rows_fct,
-            "duration_s": None,
-            "executed_at": now,
-            "error_msg": None
+            "linhas_retornadas": rows_fct,
+            "duracao_s": None,
+            "executado_em": now,
+            "mensagem_erro": None
         },
         {
-            "id_run": str(uuid.uuid4()),
-            "label": "FCT_INDICADOR_DIARIO",
+            "id_execucao": str(uuid.uuid4()),
+            "rotulo": "FCT_INDICADOR_DIARIO",
             "etapa": "gold",
             "status": "success",
-            "rows_returned": rows_fct,
-            "duration_s": None,
-            "executed_at": now,
-            "error_msg": None
+            "linhas_retornadas": rows_fct,
+            "duracao_s": None,
+            "executado_em": now,
+            "mensagem_erro": None
         }
     ])
 
