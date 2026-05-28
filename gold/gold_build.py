@@ -6,6 +6,7 @@ import os #criar pastas
 import pandas as pd #tabelas
 from datetime import datetime #horário de execução
 import uuid #gerar indicadores únicos
+import time #Contar os segundos de duração
 
 #Cria as pastas da Gold e da saída final
 os.makedirs("gold/data", exist_ok=True)
@@ -72,7 +73,7 @@ def create_fct_indicador_diario(): #Cria a tabela fato principal
     return fct
 
 #Cria a tabela de rastreabilidade
-def create_pipeline_runs(rows_fct):
+def create_pipeline_runs(rows_fct, duracao):
     #Pega o horário atual
     now = datetime.now()
 
@@ -86,7 +87,7 @@ def create_pipeline_runs(rows_fct):
             "status": "success",
             #Registra quantidade de linhas
             "linhas_retornadas": None,
-            "duracao_s": None,
+            "duracao_s": duracao,
             "executado_em": now,
             "mensagem_erro": None
         },
@@ -96,7 +97,7 @@ def create_pipeline_runs(rows_fct):
             "etapa": "bronze",
             "status": "success",
             "linhas_retornadas": None,
-            "duracao_s": None,
+            "duracao_s": duracao,
             "executado_em": now,
             "mensagem_erro": None
         },
@@ -106,7 +107,7 @@ def create_pipeline_runs(rows_fct):
             "etapa": "bronze",
             "status": "success",
             "linhas_retornadas": None,
-            "duracao_s": None,
+            "duracao_s": duracao,
             "executado_em": now,
             "mensagem_erro": None
         },
@@ -116,7 +117,7 @@ def create_pipeline_runs(rows_fct):
             "etapa": "silver",
             "status": "success",
             "linhas_retornadas": rows_fct,
-            "duracao_s": None,
+            "duracao_s": duracao,
             "executado_em": now,
             "mensagem_erro": None
         },
@@ -126,7 +127,7 @@ def create_pipeline_runs(rows_fct):
             "etapa": "gold",
             "status": "success",
             "linhas_retornadas": rows_fct,
-            "duracao_s": None,
+            "duracao_s": duracao,
             "executado_em": now,
             "mensagem_erro": None
         }
@@ -136,6 +137,8 @@ def create_pipeline_runs(rows_fct):
 
 #Função principal da Gold
 def run_gold():
+    inicio = time.time()  #Marca o início da execução
+
     print("Criando dim_indicador...")
     dim = create_dim_indicador() #Cria a dimensão
 
@@ -143,19 +146,33 @@ def run_gold():
     fct = create_fct_indicador_diario() #Cria a fato
 
     print("Criando pipeline_runs...")
-    runs = create_pipeline_runs(len(fct)) #Cria a tabela de execução
 
-    #Salva os 3 arquivos obrigatórios na pasta output
+    fim = time.time() #Marca o fim da execução
+    duracao = round(fim - inicio, 2) #Calcula o tempo em segundos
+
+    runs = create_pipeline_runs(len(fct), duracao) #Cria a tabela de execução com duração real
+
+    #Salva os 2 arquivos principais na pasta output
     dim.to_csv("output/dim_indicador.csv", index=False, encoding="utf-8-sig")
     fct.to_csv("output/fct_indicador_diario.csv", index=False, encoding="utf-8-sig")
-    runs.to_csv("output/pipeline_runs.csv", index=False, encoding="utf-8-sig")
+
+    #Caminho do histórico de execução
+    pipeline_path = "output/pipeline_runs.csv"
+
+    #Se já existir histórico, adiciona a nova execução sem apagar as anteriores
+    if os.path.exists(pipeline_path):
+        historico = pd.read_csv(pipeline_path)
+        runs = pd.concat([historico, runs], ignore_index=True)
+
+    #Salva histórico atualizado
+    runs.to_csv(pipeline_path, index=False, encoding="utf-8-sig")
 
     #Também salva uma cópia dentro da Gold
     dim.to_csv("gold/data/dim_indicador.csv", index=False, encoding="utf-8-sig")
     fct.to_csv("gold/data/fct_indicador_diario.csv", index=False, encoding="utf-8-sig")
     runs.to_csv("gold/data/pipeline_runs.csv", index=False, encoding="utf-8-sig")
 
-    print("Gold concluído com sucesso!")
+    print(f"Gold concluído com sucesso! Tempo: {duracao}s")
 
 
 if __name__ == "__main__":
