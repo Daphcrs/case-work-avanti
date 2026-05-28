@@ -68,6 +68,7 @@ def create_fct_indicador_diario(): #Cria a tabela fato principal
     fct = fct.sort_values(["data_referencia", "sk_indicador"]).reset_index(drop=True)
     #Cria a chave sequencial da fato
     fct.insert(0, "sk_fato", range(1, len(fct) + 1))
+    fct["valor"] = fct["valor"].round(6)
     
     #Retorna a fato pronta
     return fct

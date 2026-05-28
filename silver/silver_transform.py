@@ -23,7 +23,7 @@ def transform_selic(): #Função para transformar os dados da SELIC
     #Converte a data da SELIC para formato de data real
     df["data_referencia"] = pd.to_datetime(df["data"], format="%d/%m/%Y")
     #Transforma o valor, que veio como texto, em número
-    df["valor"] = pd.to_numeric(df["valor"])
+    df["valor"] = pd.to_numeric(df["valor"], errors="coerce").round(6)
     #Adiciona informações fixas da SELIC
     df["codigo"] = "11"
     df["nome"] = "SELIC"
