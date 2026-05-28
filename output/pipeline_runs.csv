@@ -1,0 +1,6 @@
+﻿id_run,label,etapa,status,rows_returned,duration_s,executed_at,error_msg
+152b8705-fab5-4283-a92c-e3d05a0d5ae2,SELIC,bronze,success,,,2026-05-27 18:01:13.833473,
+63b4b43f-7889-4099-9890-ce525f92ca38,PTAX_USD,bronze,success,,,2026-05-27 18:01:13.833473,
+1297009d-91ae-40c0-ab76-791554d8fe27,PTAX_EUR,bronze,success,,,2026-05-27 18:01:13.833473,
+ecc39932-6f4a-4c87-9942-3d6a670995fc,INDICADORES,silver,success,3616.0,,2026-05-27 18:01:13.833473,
+7cc83b58-a350-401f-ae20-3ecbe7d81900,FCT_INDICADOR_DIARIO,gold,success,3616.0,,2026-05-27 18:01:13.833473,
