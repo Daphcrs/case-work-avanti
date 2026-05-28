@@ -1,4 +1,4 @@
-# case-work-avanti# Case Work Avanti — Pipeline de Dados Banco Central
+Case Work Avanti — Pipeline de Dados Banco Central
 
 ## Objetivo
 
