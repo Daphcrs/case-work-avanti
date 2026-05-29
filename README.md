@@ -104,7 +104,7 @@ Exemplo:
 Os registros preenchidos recebem:
 
 ```python
-is_filled = True
+preenchido = True
 ```
 
 ---
@@ -119,9 +119,9 @@ A estrutura do pipeline permite reprocessamento sem impacto sobre a consistênci
 
 Foi implementada estrutura base para versionamento histórico através dos campos:
 
-- `valid_from`
-- `valid_to`
-- `is_current`
+- `vigencia_inicio`
+- `vigencia_fim`
+- `registro_atual`
 
 ---
 
@@ -147,10 +147,10 @@ Foi implementada estrutura base para versionamento histórico através dos campo
 | data_referencia | Data do indicador |
 | sk_indicador | FK |
 | valor | Valor diário |
-| is_filled | Flag de preenchimento |
-| valid_from | Início da vigência |
-| valid_to | Fim da vigência |
-| is_current | Registro vigente |
+| preenchido | Flag de preenchimento |
+| vigencia_inicio | Início da vigência |
+| vigencia_fim | Fim da vigência |
+| registro_atual | Registro vigente |
 
 ---
 
@@ -162,9 +162,10 @@ Campos principais:
 
 - etapa
 - status
-- rows_returned
-- executed_at
-- error_msg
+- linhas_retornadas
+- executado_em
+- mensagem_erro
+- duracao_s
 
 ---
 
