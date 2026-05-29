@@ -76,7 +76,13 @@ case-work-avanti/
 ├── requirements.txt
 └── README.md
 ```
+## Decisão de escopo
 
+Para esta entrega, optei por uma implementação simplificada em Python puro, com execução sequencial via `main.py`.
+
+A escolha foi feita para priorizar clareza arquitetural, rastreabilidade e aderência aos requisitos do case.
+
+Em um cenário produtivo, a evolução natural seria a integração com um orquestrador como Apache Airflow, permitindo agendamento diário, monitoramento centralizado e atualização automatizada dos indicadores.
 ---
 
 ## Decisões técnicas
