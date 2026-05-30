@@ -1,7 +1,5 @@
 #Monta os arquivos finais
 
-print("Arquivo gold_build.py iniciou")
-
 import os #criar pastas
 import pandas as pd #tabelas
 from datetime import datetime #horário de execução

@@ -7,16 +7,19 @@ from gold.gold_build import run_gold
 
 #Cria a função principal do pipeline
 def run_pipeline():
-    print("Iniciando pipeline...")
+    print("[INFO] Iniciando pipeline...\n")
 
     #Primeiro baixa os dados
+    print("[INFO] Iniciando camada Bronze")
     run_bronze()
     #Depois limpa e preenche
+    print("\n[INFO] Iniciando camada Silver")
     run_silver()
     #Depois gera os arquivos finais
+    print("\n[INFO] Iniciando camada Gold")
     run_gold()
 
-    print("Pipeline finalizado com sucesso!")
+    print("\n[SUCCESS] Pipeline finalizado com sucesso!")
 
 
 if __name__ == "__main__":

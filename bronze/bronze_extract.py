@@ -1,7 +1,5 @@
 #Pega os dados crus
 
-print("Arquivo bronze_extract.py iniciou")
-
 import requests #Permite chamar APIs.
 import json #Permite salvar os dados em formato JSON.
 import os #Permite criar pastas pelo Python.

@@ -1,7 +1,5 @@
 #Limpa e organiza
 
-print("Arquivo silver_transform.py iniciou")
-
 import json #ler arquivos JSON
 import os #criar pasta
 import pandas as pd #manipular tabelas
